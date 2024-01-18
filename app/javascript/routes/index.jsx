@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "../components/Dashboard";
 import Home from "../components/Home";
 
 export default (
-  <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
-  </Router>
+  <Routes>
+    <Route path="/dashboard" element={<Dashboard />} />
+    <Route path="/" element={<Home />} />
+  </Routes>
 );
