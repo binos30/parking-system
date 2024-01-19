@@ -10,9 +10,11 @@ body {
 }
 
 #sidebar-wrapper {
-  min-height: 100vh;
   margin-left: -15rem;
+  min-height: 100vh;
+  position: fixed;
   transition: margin 0.25s ease-out;
+  z-index: 1030;
 
   .sidebar-heading {
     padding: 0.875rem 1.25rem;
@@ -25,9 +27,13 @@ body {
 
 #page-content-wrapper {
   min-width: 100vw;
+  margin-left: 15rem;
 }
 
 body.sb-sidenav-toggled #root #sidebar-wrapper {
+  margin-left: 0;
+}
+body.sb-sidenav-toggled #root #page-content-wrapper {
   margin-left: 0;
 }
 

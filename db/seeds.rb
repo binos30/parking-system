@@ -7,3 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Entrance.delete_all
+ActiveRecord::Base.connection.execute(
+  "ALTER SEQUENCE entrances_id_seq RESTART WITH 1;"
+)
+Entrance.create(name: "A")
+Entrance.create(name: "B")
+Entrance.create(name: "C")

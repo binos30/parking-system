@@ -58,6 +58,9 @@ group :development, :test do
 
   # Configuration
   gem "dotenv-rails"
+
+  # Testing Framework
+  gem "rspec-rails"
 end
 
 group :development do
@@ -75,6 +78,7 @@ group :development do
   gem "rubocop"
   gem "rubocop-performance"
   gem "rubocop-rails"
+  gem "rubocop-rspec"
   gem "slim_lint"
   gem "syntax_tree"
   gem "syntax_tree-haml"

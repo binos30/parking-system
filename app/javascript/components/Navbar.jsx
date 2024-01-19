@@ -13,9 +13,9 @@ const AppNavbar = () => {
   };
 
   return (
-    <Navbar bg="primary" expand="lg" fixed="top" variant="dark">
+    <Navbar bg="dark" expand="lg" fixed="top" variant="dark">
       <Container fluid>
-        <button className="btn btn-primary" id="sidebarToggle" onClick={handleClick}>
+        <button className="btn btn-secondary" id="sidebarToggle" onClick={handleClick}>
           Toggle Menu
         </button>
         <button
