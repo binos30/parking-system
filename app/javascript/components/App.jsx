@@ -9,7 +9,7 @@ export default () => {
       <Sidebar />
       <div id="page-content-wrapper">
         <Navbar />
-        <section className="container-fluid">{Routes}</section>
+        <section className="container-fluid mt-2">{Routes}</section>
       </div>
     </>
   );

@@ -20,6 +20,16 @@ const Sidebar = () => {
         >
           Dashboard
         </NavLink>
+        <NavLink
+          to="/entrances"
+          className={({ isActive }) =>
+            isActive
+              ? "list-group-item list-group-item-action list-group-item-light p-3 active"
+              : "list-group-item list-group-item-action list-group-item-light p-3"
+          }
+        >
+          Entrances
+        </NavLink>
       </div>
     </div>
   );
