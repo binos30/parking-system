@@ -1,52 +1,52 @@
 import React from "react";
+import { useDocumentTitle } from "../core/hooks";
 
-export default () => (
-  <div className="d-flex align-items-center justify-content-center">
+export default () => {
+  useDocumentTitle("ParkingSystem");
+
+  return (
     <div className="bg-transparent">
-      <div className="container">
-        <h1 className="display-4">Welcome!</h1>
-        <p className="lead">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Soluta, distinctio.Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-          distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-          distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-          distinctio.Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Soluta, distinctio.Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-          distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Soluta, distinctio.Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-          distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Soluta, distinctio.Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Soluta, distinctio.Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-          distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Soluta, distinctio.Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Soluta, distinctio.
-        </p>
-        <hr className="my-4" />
-      </div>
+      <h1 className="display-4">Welcome!</h1>
+      <p className="lead">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Soluta, distinctio.Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+        distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Soluta, distinctio.Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+        distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Soluta, distinctio.Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+        distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+        distinctio.Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Soluta, distinctio.Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+        distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+        distinctio.Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Soluta, distinctio.Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Soluta, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+        distinctio.Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, distinctio.
+      </p>
+      <hr className="my-4" />
     </div>
-  </div>
-);
+  );
+};

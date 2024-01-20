@@ -42,7 +42,6 @@
       "./bin/bundle exec rubocop --require rubocop-rspec -a"
     ],
     "spec/**/*_spec.rb": "rspec",
-    "spec/**/**/*_spec.rb": "rspec",
     "app/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown"
   },
   "browserslist": [

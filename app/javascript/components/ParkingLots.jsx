@@ -4,23 +4,23 @@ import { Link } from "react-router-dom";
 import Errors from "./Errors";
 import Loader from "./Loader";
 import NoRecords from "./NoRecords";
-import { api_v1_entrances_path } from "../core/api_routes";
+import { api_v1_parking_lots_path } from "../core/api_routes";
 import { api, ApiError } from "../core/api";
 import { useDocumentTitle } from "../core/hooks";
 
-const Entrances = () => {
+const ParkingLots = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [entrances, setEntrances] = useState([]);
+  const [parkingLots, setParkingLots] = useState([]);
 
-  useDocumentTitle("ParkingSystem | Entrances");
+  useDocumentTitle("ParkingSystem | Parking Lots");
 
-  const getEntrances = async (abortController) => {
+  const getParkingLots = async (abortController) => {
     try {
       setLoading(true);
       const { signal } = abortController;
-      const response = await api.get(api_v1_entrances_path(), { signal });
-      setEntrances(response.data);
+      const response = await api.get(api_v1_parking_lots_path(), { signal });
+      setParkingLots(response.data);
     } catch (error) {
       if (!abortController.signal.aborted) {
         if (error instanceof ApiError) {
@@ -44,11 +44,11 @@ const Entrances = () => {
           </tr>
         </thead>
         <tbody>
-          {entrances.map((entrance) => (
-            <tr key={entrance.id}>
-              <td>{entrance.name}</td>
+          {parkingLots.map((parkingLot) => (
+            <tr key={parkingLot.id}>
+              <td>{parkingLot.name}</td>
               <td className="text-center">
-                <Link to={`/entrances/${entrance.id}/edit`}>
+                <Link to={`/parking_lots/${parkingLot.id}/edit`}>
                   <i className="bi bi-pencil"></i>
                 </Link>
               </td>
@@ -60,13 +60,13 @@ const Entrances = () => {
   };
 
   const content = () => {
-    return entrances.length ? dataTable() : <NoRecords />;
+    return parkingLots.length ? dataTable() : <NoRecords />;
   };
 
   useEffect(() => {
     const abortController = new AbortController();
 
-    getEntrances(abortController).catch(console.error);
+    getParkingLots(abortController).catch(console.error);
 
     return () => {
       abortController.abort();
@@ -79,11 +79,11 @@ const Entrances = () => {
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
           <div className="d-flex justify-content-between align-items-center mb-2">
-            <div className="fs-3 fw-bold">Entrances</div>
+            <div className="fs-3 fw-bold">Parking Lots</div>
             <div>
-              <Link to="/entrances/new" className="btn btn-primary btn-sm">
+              <Link to="/parking_lots/new" className="btn btn-primary btn-sm">
                 <i className="bi bi-plus-lg me-1"></i>
-                New Entrance
+                New Parking Lot
               </Link>
             </div>
           </div>
@@ -94,4 +94,4 @@ const Entrances = () => {
   );
 };
 
-export default Entrances;
+export default ParkingLots;

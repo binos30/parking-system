@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_18_060906) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_19_131606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,4 +21,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_18_060906) do
     t.index ["name"], name: "index_entrances_on_name", unique: true
   end
 
+  create_table "parking_lots", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_parking_lots_on_name", unique: true
+  end
+
+  create_table "parking_slots", force: :cascade do |t|
+    t.integer "slot_type", null: false
+    t.string "distances", null: false
+    t.bigint "parking_lot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["distances"], name: "index_parking_slots_on_distances"
+    t.index ["parking_lot_id"], name: "index_parking_slots_on_parking_lot_id"
+    t.index ["slot_type"], name: "index_parking_slots_on_slot_type"
+  end
+
+  add_foreign_key "parking_slots", "parking_lots"
 end

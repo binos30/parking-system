@@ -30,6 +30,26 @@ const Sidebar = () => {
         >
           Entrances
         </NavLink>
+        <NavLink
+          to="/parking_lots"
+          className={({ isActive }) =>
+            isActive
+              ? "list-group-item list-group-item-action list-group-item-light p-3 active"
+              : "list-group-item list-group-item-action list-group-item-light p-3"
+          }
+        >
+          Parking Lots
+        </NavLink>
+        <NavLink
+          to="/parking_slots"
+          className={({ isActive }) =>
+            isActive
+              ? "list-group-item list-group-item-action list-group-item-light p-3 active"
+              : "list-group-item list-group-item-action list-group-item-light p-3"
+          }
+        >
+          Parking Slots
+        </NavLink>
       </div>
     </div>
   );
