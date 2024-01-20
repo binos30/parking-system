@@ -50,7 +50,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def entrance_params
-        params.require(:entrance).permit(:name)
+        params.require(:entrance).permit(:name).each_value { |value| value.try(:strip!) }
       end
     end
   end

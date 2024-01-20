@@ -18,7 +18,7 @@ const AppNavbar = () => {
         <button className="btn btn-secondary" id="sidebarToggle" onClick={handleClick}>
           Toggle Menu
         </button>
-        <button
+        {/* <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -40,7 +40,7 @@ const AppNavbar = () => {
               </NavLink>
             </li>
           </ul>
-        </div>
+        </div> */}
       </Container>
     </Navbar>
   );

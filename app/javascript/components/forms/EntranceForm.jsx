@@ -7,6 +7,7 @@ import Errors from "../Errors";
 import Loader from "../Loader";
 import { api_v1_entrances_path, api_v1_entrance_path } from "../../core/api_routes";
 import { api, ApiError } from "../../core/api";
+import { useDocumentTitle } from "../../core/hooks";
 import { EntranceSchema } from "../../core/schema";
 
 const EntranceForm = () => {
@@ -20,6 +21,8 @@ const EntranceForm = () => {
   const { errors, isSubmitting } = formState;
   const [processing, setProcessing] = useState(true);
   const [formErrors, setFormErrors] = useState([]);
+
+  useDocumentTitle(`ParkingSystem | ${id ? "Edit Entrance" : "New Entrance"}`);
 
   const onSubmit = async (data) => {
     try {
@@ -44,7 +47,6 @@ const EntranceForm = () => {
   };
 
   useEffect(() => {
-    document.title = `ParkingSystem | ${id ? "Edit Entrance" : "New Entrance"}`;
     const abortController = new AbortController();
     const getEntrance = async () => {
       setProcessing(true);
@@ -80,40 +82,45 @@ const EntranceForm = () => {
   if (processing) return <Loader />;
 
   return (
-    <Card>
-      <Card.Body>
-        <FormProvider {...methods}>
-          <Form onSubmit={handleSubmit(onSubmit, onError)}>
-            {formErrors.length > 0 && Errors(formErrors)}
-            <Row>
-              <Col md={6}>
-                <Form.Label htmlFor="name">Name</Form.Label>
-                <Form.Control
-                  {...register("name")}
-                  id="name"
-                  autoFocus="autofocus"
-                  className="mb-2"
-                />
-                <p className="text-danger">{errors.name?.message}</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Button
-                  type="submit"
-                  color="primary"
-                  className="text-light"
-                  disabled={isSubmitting}
-                  title="Submit"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit"}
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </FormProvider>
-      </Card.Body>
-    </Card>
+    <Row>
+      <Col md={{ span: 6, offset: 3 }}>
+        <Card>
+          <Card.Body>
+            <div className="fs-5 fw-bold">{`${id ? "Edit Entrance" : "New Entrance"}`}</div>
+            <FormProvider {...methods}>
+              <Form onSubmit={handleSubmit(onSubmit, onError)}>
+                {formErrors.length > 0 && Errors(formErrors)}
+                <Row>
+                  <Col md={6}>
+                    <Form.Label htmlFor="name">Name</Form.Label>
+                    <Form.Control
+                      {...register("name")}
+                      id="name"
+                      autoFocus="autofocus"
+                      className="mb-2"
+                    />
+                    <p className="text-danger">{errors.name?.message}</p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Button
+                      type="submit"
+                      color="primary"
+                      className="text-light"
+                      disabled={isSubmitting}
+                      title="Submit"
+                    >
+                      {isSubmitting ? "Submitting..." : "Submit"}
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+            </FormProvider>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
   );
 };
 
