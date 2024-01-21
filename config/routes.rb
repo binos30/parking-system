@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :entrances, except: %i[new edit], defaults: { format: :json }
       resources :parking_lots, except: %i[new edit], defaults: { format: :json }
       resources :parking_slots, only: :index, defaults: { format: :json }
+      resources :bookings, except: %i[new edit], defaults: { format: :json }
     end
   end
 

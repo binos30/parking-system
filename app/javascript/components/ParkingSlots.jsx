@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Table } from "react-bootstrap";
+import { Badge, Col, Row, Table } from "react-bootstrap";
 import Errors from "./Errors";
 import Loader from "./Loader";
 import NoRecords from "./NoRecords";
@@ -7,6 +7,7 @@ import { api_v1_parking_slots_path } from "../core/api_routes";
 import { api, ApiError } from "../core/api";
 import { PARKING_SLOT_TYPES } from "../core/constants";
 import { useDocumentTitle } from "../core/hooks";
+import { ParkingSlotStatus } from "../core/schema";
 
 const ParkingSlots = () => {
   const [loading, setLoading] = useState(false);
@@ -43,6 +44,7 @@ const ParkingSlots = () => {
             <th>Type</th>
             <th>Distances</th>
             <th>Parking Lot</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +54,7 @@ const ParkingSlots = () => {
               <td>{PARKING_SLOT_TYPES[parkingSlot.slot_type]}</td>
               <td>{parkingSlot.distances}</td>
               <td>{parkingSlot.parking_lot}</td>
+              <td>{badge(parkingSlot.status)}</td>
             </tr>
           ))}
         </tbody>
@@ -61,6 +64,14 @@ const ParkingSlots = () => {
 
   const content = () => {
     return parkingSlots.length ? dataTable() : <NoRecords />;
+  };
+
+  const badge = (status) => {
+    if (status === ParkingSlotStatus.Vacant) return <Badge bg="secondary">Vacant</Badge>;
+    else if (status === ParkingSlotStatus.Reserved) return <Badge bg="info">Reserved</Badge>;
+    else if (status === ParkingSlotStatus.Occupied) return <Badge bg="success">Occupied</Badge>;
+
+    return <Badge bg="danger">Unknown</Badge>;
   };
 
   useEffect(() => {
