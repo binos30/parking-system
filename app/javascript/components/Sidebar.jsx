@@ -50,6 +50,16 @@ const Sidebar = () => {
         >
           Parking Slots
         </NavLink>
+        <NavLink
+          to="/bookings"
+          className={({ isActive }) =>
+            isActive
+              ? "list-group-item list-group-item-action list-group-item-light p-3 active"
+              : "list-group-item list-group-item-action list-group-item-light p-3"
+          }
+        >
+          Bookings
+        </NavLink>
       </div>
     </div>
   );

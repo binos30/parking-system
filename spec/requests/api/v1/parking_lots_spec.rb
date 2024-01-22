@@ -28,7 +28,7 @@ RSpec.describe "/api/v1/parking_lots" do
 
   let(:invalid_attributes) { { name: "" } }
 
-  let(:valid_slots_attributes) { [{ slot_type: 0, distances: "1,2,3" }] }
+  let(:valid_slots_attributes) { [{ slot_type: "small", distances: "1,2,3" }] }
 
   describe "GET /index" do
     it "renders a successful response" do
