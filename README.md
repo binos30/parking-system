@@ -1,24 +1,81 @@
-# README
+# Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prerequisites
 
-Things you may want to cover:
+- [Ruby 3.3.0](https://www.ruby-lang.org/en/downloads/)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Node.js 20.11.0](https://nodejs.org/en/blog/release/v20.11.0)
 
-* Ruby version
+Create `.env` file at the root of the project directory. Copy the content of `.env.template.erb` to `.env` then update the `username` and `password` based on your database credentials
 
-* System dependencies
+Install dependencies
 
-* Configuration
+```bash
+bin/bundle i
+```
 
-* Database creation
+```bash
+yarn install
+```
 
-* Database initialization
+Setup database
 
-* How to run the test suite
+```bash
+bin/rails db:setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Start local web server
 
-* Deployment instructions
+```bash
+bin/dev
+```
 
-* ...
+# Testing
+
+Setup test database
+
+```bash
+bin/rails db:test:prepare
+```
+
+Default: Run all spec files (i.e., those matching spec/\*\*/\*\_spec.rb)
+
+```bash
+rspec
+```
+
+Run all spec files in a single directory (recursively)
+
+```bash
+rspec spec/models
+```
+
+Run a single spec file
+
+```bash
+rspec spec/models/entrance_spec.rb
+```
+
+Run a single example from a spec file (by line number)
+
+```bash
+rspec spec/models/entrance_spec.rb:6
+```
+
+See all options for running specs
+
+```bash
+rspec --help
+```
+
+# Modules
+
+`Dashboard` - Not implemented yet
+
+`Entrances` - List of parking entrances
+
+`Parking Lots` - List of parking lots. You can add slot when adding new parking lot
+
+`Parking Slots` - List of parking slots
+
+`Bookings` - List of vehicle bookings
