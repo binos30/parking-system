@@ -6,6 +6,8 @@ class ParkingSlot < ApplicationRecord
 
   belongs_to :parking_lot
 
+  has_many :bookings, dependent: :restrict_with_exception
+
   validates :slot_type, presence: true, inclusion: { in: slot_types.keys }
   validates :status, presence: true, inclusion: { in: statuses.keys }
 

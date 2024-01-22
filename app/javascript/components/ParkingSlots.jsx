@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Badge, Col, Row, Table } from "react-bootstrap";
+import { Badge, Col, OverlayTrigger, Row, Table, Tooltip } from "react-bootstrap";
 import Errors from "./Errors";
 import Loader from "./Loader";
 import NoRecords from "./NoRecords";
@@ -41,8 +41,38 @@ const ParkingSlots = () => {
         <thead>
           <tr>
             <th>Code</th>
-            <th>Type</th>
-            <th>Distances</th>
+            <th>
+              Type
+              <OverlayTrigger
+                placement="right"
+                overlay={
+                  <Tooltip id="tooltip">
+                    SP = Small
+                    <br />
+                    MP = Medium
+                    <br />
+                    LP = Large
+                  </Tooltip>
+                }
+              >
+                <i className="bi bi-question-circle ms-1"></i>
+              </OverlayTrigger>
+            </th>
+            <th>
+              Distances
+              <OverlayTrigger
+                placement="right"
+                overlay={
+                  <Tooltip id="tooltip">
+                    Slot distances must be comma-separated. For example, if your parking system has
+                    three (3) entry points. The distances will be: 1,4,5, where the integer entry
+                    per tuple corresponds to the distance unit from every parking entry point A,B,C
+                  </Tooltip>
+                }
+              >
+                <i className="bi bi-question-circle ms-1"></i>
+              </OverlayTrigger>
+            </th>
             <th>Parking Lot</th>
             <th>Status</th>
           </tr>
