@@ -15,9 +15,9 @@ module Api
       end
 
       # POST /api/v1/bookings or /api/v1/bookings.json
-      def create
+      def create # rubocop:disable Metrics/AbcSize
         Booking.transaction do
-          parking_slot = available_parking_slot
+          parking_slot = FindAvailableParkingSlot.new(booking_params[:vehicle_type]).call
           raise "Sorry, parking slots are full" if parking_slot.nil?
 
           @booking = Booking.new(booking_params.merge(parking_slot_id: parking_slot.id))
@@ -51,11 +51,11 @@ module Api
           @booking.lock!
           raise "Vehicle already parked." if @booking.date_park.present?
 
-          entrance_index =
-            Entrance.order(:created_at).ids.index(park_vehicle_params[:entrance_id].to_i)
-          raise "Entrance not found." if entrance_index.nil?
-
-          parking_slot = parking_slot(@booking.vehicle_type, entrance_index)
+          parking_slot =
+            FindClosestParkingSlot.new(
+              @booking.vehicle_type,
+              park_vehicle_params[:entrance_id]
+            ).call
           @booking.park_vehicle!(parking_slot, park_vehicle_params.except(:entrance_id))
         end
 
@@ -78,49 +78,6 @@ module Api
       end
 
       private
-
-      def available_parking_slot
-        vehicle_type = booking_params[:vehicle_type]
-        case vehicle_type
-        when "small"
-          ParkingSlot.where(status: :vacant).first
-        when "medium"
-          ParkingSlot.where(status: :vacant, slot_type: %i[medium large]).first
-        when "large"
-          ParkingSlot.where(status: :vacant, slot_type: :large).first
-        else
-          raise "Invalid vehicle type."
-        end
-      end
-
-      # Find the parking slot closest to the entrance
-      def parking_slot(vehicle_type, entrance_index) # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
-        case vehicle_type
-        when "small"
-          parking_slots =
-            ParkingSlot
-              .where(status: %i[vacant reserved])
-              .map { |ps| { id: ps.id, distance: ps.distances_arr[entrance_index] } }
-          parking_slot = parking_slots.min_by { |ps| ps[:distance] }
-          ParkingSlot.find(parking_slot[:id])
-        when "medium"
-          parking_slots =
-            ParkingSlot
-              .where(status: %i[vacant reserved], slot_type: %i[medium large])
-              .map { |ps| { id: ps.id, distance: ps.distances_arr[entrance_index] } }
-          parking_slot = parking_slots.min_by { |ps| ps[:distance] }
-          ParkingSlot.find(parking_slot[:id])
-        when "large"
-          parking_slots =
-            ParkingSlot
-              .where(status: %i[vacant reserved], slot_type: :large)
-              .map { |ps| { id: ps.id, distance: ps.distances_arr[entrance_index] } }
-          parking_slot = parking_slots.min_by { |ps| ps[:distance] }
-          ParkingSlot.find(parking_slot[:id])
-        else
-          raise "Invalid vehicle type."
-        end
-      end
 
       # Use callbacks to share common setup or constraints between actions.
       def set_booking
