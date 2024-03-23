@@ -38,7 +38,7 @@ const get = async (url, config = {}) => {
 };
 
 const post = async (url, data, config = {}) => {
-  return await axios.post(url, data, (config = {}));
+  return await axios.post(url, data, config);
 };
 
 const put = async (url, data, config = {}) => {

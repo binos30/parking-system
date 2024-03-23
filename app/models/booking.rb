@@ -17,6 +17,9 @@ class Booking < ApplicationRecord
   end
 
   def park_vehicle!(slot, params)
+    lock!
+    raise "Vehicle already parked." if date_park.present?
+
     parking_slot.vacant! if parking_slot_id != slot.id
     update!(params.merge(parking_slot: slot))
 
@@ -24,7 +27,10 @@ class Booking < ApplicationRecord
     slot.occupied!
   end
 
-  def unpark_vehicle!(params)
+  def unpark_vehicle!(params) # rubocop:disable Metrics/AbcSize
+    lock!
+    raise "Vehicle already unparked." if date_unpark.present?
+
     unpark_date = Time.zone.parse(params[:date_unpark])
     self.fee = CalculateFee.new(unpark_date, date_park, parking_slot.slot_type).call
     update!(params)

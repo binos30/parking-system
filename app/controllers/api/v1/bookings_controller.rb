@@ -18,7 +18,7 @@ module Api
       def create # rubocop:disable Metrics/AbcSize
         Booking.transaction do
           parking_slot = FindAvailableParkingSlot.new(booking_params[:vehicle_type]).call
-          raise "Sorry, parking slots are full" if parking_slot.nil?
+          raise "Sorry, there are no available slots" if parking_slot.nil?
 
           @booking = Booking.new(booking_params.merge(parking_slot_id: parking_slot.id))
           @booking.save!
@@ -46,11 +46,8 @@ module Api
         respond_to { |format| format.json { head :no_content } }
       end
 
-      def park_vehicle # rubocop:disable Metrics/AbcSize
+      def park_vehicle
         Booking.transaction do
-          @booking.lock!
-          raise "Vehicle already parked." if @booking.date_park.present?
-
           parking_slot =
             FindClosestParkingSlot.new(
               @booking.vehicle_type,
@@ -65,12 +62,7 @@ module Api
       end
 
       def unpark_vehicle
-        Booking.transaction do
-          @booking.lock!
-          raise "Vehicle already unparked." if @booking.date_unpark.present?
-
-          @booking.unpark_vehicle!(unpark_vehicle_params)
-        end
+        Booking.transaction { @booking.unpark_vehicle!(unpark_vehicle_params) }
 
         respond_to do |format|
           format.json { render :show, status: :ok, location: api_v1_booking_url(@booking) }
