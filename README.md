@@ -1,4 +1,8 @@
-# Setup
+# Parking System
+
+Parking allocation system
+
+## Setup
 
 Prerequisites
 
@@ -8,20 +12,10 @@ Prerequisites
 
 Create `.env` file at the root of the project directory. Copy the content of `.env.template.erb` to `.env` then update the `username` and `password` based on your database credentials
 
-Install dependencies
+Install dependencies and setup database
 
 ```bash
-bin/bundle i
-```
-
-```bash
-yarn install
-```
-
-Setup database
-
-```bash
-bin/rails db:setup
+bin/setup
 ```
 
 Start local web server
@@ -30,7 +24,9 @@ Start local web server
 bin/dev
 ```
 
-# Testing
+Go to [http://localhost:3000](http://localhost:3000)
+
+## Testing
 
 Setup test database
 
@@ -68,7 +64,7 @@ See all options for running specs
 rspec --help
 ```
 
-# Modules
+## Modules
 
 `Dashboard` - Not implemented yet
 
