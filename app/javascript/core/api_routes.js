@@ -1,3 +1,5 @@
+export const api_v1_dashboard_path = () => "/api/v1/dashboard";
+
 export const api_v1_entrances_path = () => "/api/v1/entrances";
 export const api_v1_entrance_path = (id) => `/api/v1/entrances/${id}`;
 

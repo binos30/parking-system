@@ -2,6 +2,8 @@
 
 Parking allocation system
 
+![Dashboard](./app/assets/images/dashboard.png)
+
 ## Setup
 
 Prerequisites
@@ -66,7 +68,7 @@ rspec --help
 
 ## Modules
 
-`Dashboard` - Not implemented yet
+`Dashboard` - Monitors the occupancy of the parking spaces
 
 `Entrances` - List of parking entrances
 
