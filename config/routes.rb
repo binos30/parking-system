@@ -8,10 +8,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", :as => :rails_health_check
 
   # Defines the root path route ("/")
-  root to: redirect("/dashboard")
+  root "home#index"
 
   namespace :api do
     namespace :v1 do
+      resources :dashboard, only: :index, defaults: { format: :json }
       resources :entrances, except: %i[new edit], defaults: { format: :json }
       resources :parking_lots, except: %i[new edit], defaults: { format: :json }
       resources :parking_slots, only: :index, defaults: { format: :json }

@@ -1,6 +1,10 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
 
+:root {
+  --bs-bg-opacity: 1;
+}
+
 body {
   padding-top: 56px;
 }
@@ -47,5 +51,26 @@ body.sb-sidenav-toggled #root #page-content-wrapper {
   }
   body.sb-sidenav-toggled #root #sidebar-wrapper {
     margin-left: -15rem;
+  }
+}
+
+.card--secondary {
+  background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity));
+  color: #ffffff;
+}
+
+.card--info {
+  background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity));
+  color: #ffffff;
+}
+
+.card--success {
+  background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity));
+  color: #ffffff;
+}
+
+.dashboard {
+  .slots-count-card {
+    border: none;
   }
 }
