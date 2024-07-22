@@ -21,7 +21,11 @@ module Api
         end
 
         respond_to do |format|
-          format.json { render :show, status: :created, location: api_v1_entrance_url(@entrance) }
+          format.json do
+            render :show,
+                   status: :created,
+                   location: api_v1_entrance_url(@entrance)
+          end
         end
       end
 
@@ -30,7 +34,9 @@ module Api
         Entrance.transaction { @entrance.update!(entrance_params) }
 
         respond_to do |format|
-          format.json { render :show, status: :ok, location: api_v1_entrance_url(@entrance) }
+          format.json do
+            render :show, status: :ok, location: api_v1_entrance_url(@entrance)
+          end
         end
       end
 
@@ -50,7 +56,10 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def entrance_params
-        params.require(:entrance).permit(:name).each_value { |value| value.try(:strip!) }
+        params
+          .require(:entrance)
+          .permit(:name)
+          .each_value { |value| value.try(:strip!) }
       end
     end
   end

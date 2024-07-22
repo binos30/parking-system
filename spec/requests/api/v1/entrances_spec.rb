@@ -44,7 +44,7 @@ RSpec.describe "/api/v1/entrances" do
     context "with valid parameters" do
       it "creates a new Entrance" do
         expect do
- post api_v1_entrances_url, params: { entrance: valid_attributes } 
+ post api_v1_entrances_url, params: { entrance: valid_attributes }
 end.to change(
           Entrance,
           :count

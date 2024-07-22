@@ -2,10 +2,10 @@
 
 source "https://rubygems.org"
 
-ruby "3.3.0"
+ruby "3.3.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3.2"
+gem "rails", "~> 7.1.3.4"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -75,10 +75,9 @@ group :development do
 
   # Code Formatting & Linting
   gem "prettier_print"
-  gem "rubocop"
-  gem "rubocop-performance"
-  gem "rubocop-rails"
-  gem "rubocop-rspec"
+  gem "rubocop-rails-omakase", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-rspec_rails", require: false
   gem "slim_lint"
   gem "syntax_tree"
   gem "syntax_tree-haml"
