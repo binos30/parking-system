@@ -64,9 +64,9 @@ const ParkingSlots = () => {
                 placement="right"
                 overlay={
                   <Tooltip id="tooltip">
-                    Slot distances must be comma-separated. For example, if your parking system has
-                    three (3) entry points. The distances will be: 1,4,5, where the integer entry
-                    per tuple corresponds to the distance unit from every parking entry point A,B,C
+                    Slot distances must be comma-separated. For example, if your parking system has three (3) entry
+                    points. The distances will be: 1,4,5, where the integer entry per tuple corresponds to the
+                    distance unit from every parking entry point A,B,C
                   </Tooltip>
                 }
               >

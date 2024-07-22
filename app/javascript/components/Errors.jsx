@@ -8,12 +8,7 @@ const Errors = (errors) => {
           <li key={index}>{error}</li>
         ))}
       </ul>
-      <button
-        type="button"
-        className="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
+      <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   );
 };

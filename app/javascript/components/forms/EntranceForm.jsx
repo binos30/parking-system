@@ -93,12 +93,7 @@ const EntranceForm = () => {
                 <Row>
                   <Col md={6}>
                     <Form.Label htmlFor="name">Name</Form.Label>
-                    <Form.Control
-                      {...register("name")}
-                      id="name"
-                      autoFocus="autofocus"
-                      className="mb-2"
-                    />
+                    <Form.Control {...register("name")} id="name" autoFocus="autofocus" className="mb-2" />
                     <p className="text-danger">{errors.name?.message}</p>
                   </Col>
                 </Row>

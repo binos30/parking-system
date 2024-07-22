@@ -66,9 +66,7 @@ const ParkingLotForm = () => {
     const error = "There are errors on your form.";
     if (data?.parking_slots_attributes) {
       setFormErrors([
-        data.parking_slots_attributes.message ||
-          data.parking_slots_attributes.root?.message ||
-          error
+        data.parking_slots_attributes.message || data.parking_slots_attributes.root?.message || error
       ]);
     } else {
       setFormErrors([error]);
@@ -122,12 +120,7 @@ const ParkingLotForm = () => {
                 <Row>
                   <Col md={6}>
                     <Form.Label htmlFor="name">Name</Form.Label>
-                    <Form.Control
-                      {...register("name")}
-                      id="name"
-                      autoFocus="autofocus"
-                      className="mb-2"
-                    />
+                    <Form.Control {...register("name")} id="name" autoFocus="autofocus" className="mb-2" />
                     <p className="text-danger">{errors.name?.message}</p>
                   </Col>
                 </Row>
@@ -152,10 +145,7 @@ const ParkingLotForm = () => {
                       <p></p>
                     </Col>
                     <Col>
-                      <Form.Label
-                        htmlFor={`${fieldArrayName}.${index}.slot_type`}
-                        className="fw-semibold"
-                      >
+                      <Form.Label htmlFor={`${fieldArrayName}.${index}.slot_type`} className="fw-semibold">
                         Type
                         <OverlayTrigger
                           key={index}
@@ -183,25 +173,19 @@ const ParkingLotForm = () => {
                           </option>
                         ))}
                       </Form.Select>
-                      <p className="text-danger">
-                        {errors.parking_slots_attributes?.[index]?.slot_type?.message}
-                      </p>
+                      <p className="text-danger">{errors.parking_slots_attributes?.[index]?.slot_type?.message}</p>
                     </Col>
                     <Col>
-                      <Form.Label
-                        htmlFor={`${fieldArrayName}.${index}.distances`}
-                        className="fw-semibold"
-                      >
+                      <Form.Label htmlFor={`${fieldArrayName}.${index}.distances`} className="fw-semibold">
                         Distances
                         <OverlayTrigger
                           key={index}
                           placement="right"
                           overlay={
                             <Tooltip id={`tooltip-${index}`}>
-                              Slot distances must be comma-separated. For example, if your parking
-                              system has three (3) entry points. The distances will be: 1,4,5, where
-                              the integer entry per tuple corresponds to the distance unit from
-                              every parking entry point A,B,C
+                              Slot distances must be comma-separated. For example, if your parking system has three
+                              (3) entry points. The distances will be: 1,4,5, where the integer entry per tuple
+                              corresponds to the distance unit from every parking entry point A,B,C
                             </Tooltip>
                           }
                         >
@@ -213,9 +197,7 @@ const ParkingLotForm = () => {
                         id={`${fieldArrayName}.${index}.distances`}
                         placeholder="1,2,3"
                       />
-                      <p className="text-danger">
-                        {errors.parking_slots_attributes?.[index]?.distances?.message}
-                      </p>
+                      <p className="text-danger">{errors.parking_slots_attributes?.[index]?.distances?.message}</p>
                     </Col>
                     <Col sm="1">
                       <Button
@@ -223,11 +205,7 @@ const ParkingLotForm = () => {
                         size="sm"
                         variant="outline-danger"
                         onClick={() => {
-                          if (field.id)
-                            setSlotsForDestruction((value) => [
-                              ...value,
-                              { ...field, _destroy: "1" }
-                            ]);
+                          if (field.id) setSlotsForDestruction((value) => [...value, { ...field, _destroy: "1" }]);
                           remove(index);
                         }}
                       >

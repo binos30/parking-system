@@ -48,10 +48,7 @@ export const ParkingLotSchema = yup.object({
 
 export const BookingSchema = yup.object({
   id: yup.number().nullable(true),
-  vehicle_type: yup
-    .string()
-    .oneOf(Object.values(VehicleType))
-    .required("Vehicle type is required."),
+  vehicle_type: yup.string().oneOf(Object.values(VehicleType)).required("Vehicle type is required."),
   plate_number: yup
     .string()
     .min(2, "Name is too short (minimum is 2 characters)")

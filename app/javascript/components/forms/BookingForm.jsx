@@ -80,11 +80,7 @@ const BookingForm = () => {
                 <Row>
                   <Col md={6}>
                     <Form.Label htmlFor="plate_number">Plate Number</Form.Label>
-                    <Form.Control
-                      {...register("plate_number")}
-                      id="plate_number"
-                      autoFocus="autofocus"
-                    />
+                    <Form.Control {...register("plate_number")} id="plate_number" autoFocus="autofocus" />
                     <p className="text-danger">{errors.plate_number?.message}</p>
                   </Col>
                 </Row>
