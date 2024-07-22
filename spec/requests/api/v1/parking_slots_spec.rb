@@ -15,11 +15,11 @@ require "rails_helper"
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/api/v1/parking_slots" do
-  # before do
-  #   Entrance.create!(name: "A")
-  #   Entrance.create!(name: "B")
-  #   Entrance.create!(name: "C")
-  # end
+  before do
+    Entrance.create!(name: "A")
+    Entrance.create!(name: "B")
+    Entrance.create!(name: "C")
+  end
 
   let(:valid_attributes) { { slot_type: 0, distances: "1,2,3" } }
 

@@ -15,11 +15,11 @@ require "rails_helper"
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/api/v1/bookings" do
-  # before do
-  #   Entrance.create!(name: "A")
-  #   Entrance.create!(name: "B")
-  #   Entrance.create!(name: "C")
-  # end
+  before do
+    Entrance.create!(name: "A")
+    Entrance.create!(name: "B")
+    Entrance.create!(name: "C")
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Booking. As you add validations to Booking, be sure to

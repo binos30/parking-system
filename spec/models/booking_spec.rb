@@ -3,6 +3,12 @@
 require "rails_helper"
 
 RSpec.describe Booking do
+  before do
+    Entrance.create!(name: "A")
+    Entrance.create!(name: "B")
+    Entrance.create!(name: "C")
+  end
+
   let!(:parking_lot) do
     parking_lot = ParkingLot.new(name: "PL1")
     parking_lot.parking_slots.build(slot_type: 0, distances: "1,2,3")

@@ -15,11 +15,11 @@ require "rails_helper"
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/api/v1/parking_lots" do
-  # before do
-  #   Entrance.create!(name: "A")
-  #   Entrance.create!(name: "B")
-  #   Entrance.create!(name: "C")
-  # end
+  before do
+    Entrance.create!(name: "A")
+    Entrance.create!(name: "B")
+    Entrance.create!(name: "C")
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # ParkingLot. As you add validations to ParkingLot, be sure to
