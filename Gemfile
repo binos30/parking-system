@@ -62,6 +62,9 @@ group :development, :test do
   # Testing Framework
   gem "rspec-rails"
 
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
+
   ## Code Formatting & Linting
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
