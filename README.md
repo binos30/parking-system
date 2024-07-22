@@ -1,5 +1,8 @@
 # Parking System
 
+[![CI](https://github.com/binos30/parking-system/actions/workflows/ci.yml/badge.svg)](https://github.com/binos30/parking-system/actions/workflows/ci.yml)
+[![Dependabot Status](https://badgen.net/github/dependabot/binos30/parking-system?icon=dependabot)](https://dependabot.com)
+
 Parking allocation system
 
 ![Dashboard](./app/assets/images/dashboard.png)
