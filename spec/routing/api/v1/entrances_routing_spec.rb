@@ -9,11 +9,7 @@ RSpec.describe Api::V1::EntrancesController do
     end
 
     it "routes to #show" do
-      expect(get: "/api/v1/entrances/1").to route_to(
-        "api/v1/entrances#show",
-        id: "1",
-        format: :json
-      )
+      expect(get: "/api/v1/entrances/1").to route_to("api/v1/entrances#show", id: "1", format: :json)
     end
 
     it "routes to #create" do
@@ -21,27 +17,15 @@ RSpec.describe Api::V1::EntrancesController do
     end
 
     it "routes to #update via PUT" do
-      expect(put: "/api/v1/entrances/1").to route_to(
-        "api/v1/entrances#update",
-        id: "1",
-        format: :json
-      )
+      expect(put: "/api/v1/entrances/1").to route_to("api/v1/entrances#update", id: "1", format: :json)
     end
 
     it "routes to #update via PATCH" do
-      expect(patch: "/api/v1/entrances/1").to route_to(
-        "api/v1/entrances#update",
-        id: "1",
-        format: :json
-      )
+      expect(patch: "/api/v1/entrances/1").to route_to("api/v1/entrances#update", id: "1", format: :json)
     end
 
     it "routes to #destroy" do
-      expect(delete: "/api/v1/entrances/1").to route_to(
-        "api/v1/entrances#destroy",
-        id: "1",
-        format: :json
-      )
+      expect(delete: "/api/v1/entrances/1").to route_to("api/v1/entrances#destroy", id: "1", format: :json)
     end
   end
 end

@@ -15,11 +15,11 @@ require "rails_helper"
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/api/v1/parking_lots" do
-  before do
-    Entrance.create!(name: "A")
-    Entrance.create!(name: "B")
-    Entrance.create!(name: "C")
-  end
+  # before do
+  #   Entrance.create!(name: "A")
+  #   Entrance.create!(name: "B")
+  #   Entrance.create!(name: "C")
+  # end
 
   # This should return the minimal set of attributes required to create a valid
   # ParkingLot. As you add validations to ParkingLot, be sure to
@@ -80,9 +80,10 @@ RSpec.describe "/api/v1/parking_lots" do
 
     context "with invalid parameters" do
       it "does not create a new ParkingLot" do
-        expect do
-          post api_v1_parking_lots_url, params: { parking_lot: invalid_attributes }
-        end.not_to change(ParkingLot, :count)
+        expect do post api_v1_parking_lots_url, params: { parking_lot: invalid_attributes } end.not_to change(
+          ParkingLot,
+          :count
+        )
       end
 
       it "renders a response with 422 status" do

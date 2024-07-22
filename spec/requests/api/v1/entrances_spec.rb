@@ -18,7 +18,7 @@ RSpec.describe "/api/v1/entrances" do
   # This should return the minimal set of attributes required to create a valid
   # Entrance. As you add validations to Entrance, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { name: "A" } }
+  let(:valid_attributes) { { name: "A3" } }
 
   let(:invalid_attributes) { { name: "" } }
 
@@ -32,36 +32,35 @@ RSpec.describe "/api/v1/entrances" do
 
   describe "GET /show" do
     it "renders a successful response" do
-      entrance = Entrance.create! valid_attributes
+      entrance = Entrance.create!(name: "B2")
       get api_v1_entrance_url(entrance)
       expect(response).to have_http_status(:success)
       json = response.parsed_body
-      expect(json["name"]).to eq("A")
+      expect(json["name"]).to eq("B2")
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Entrance" do
-        expect do
- post api_v1_entrances_url, params: { entrance: valid_attributes }
-end.to change(
+        expect do post api_v1_entrances_url, params: { entrance: { name: "D1" } } end.to change(
           Entrance,
           :count
         ).by(1)
       end
 
       it "returns a created status" do
-        post api_v1_entrances_url, params: { entrance: valid_attributes }
+        post api_v1_entrances_url, params: { entrance: { name: "B1" } }
         expect(response).to have_http_status(:created)
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new Entrance" do
-        expect do
-          post api_v1_entrances_url, params: { entrance: invalid_attributes }
-        end.not_to change(Entrance, :count)
+        expect do post api_v1_entrances_url, params: { entrance: invalid_attributes } end.not_to change(
+          Entrance,
+          :count
+        )
       end
 
       it "renders a response with 422 status" do
@@ -76,7 +75,7 @@ end.to change(
       let(:new_attributes) { { name: "A1" } }
 
       it "updates the requested api_v1_entrance" do
-        entrance = Entrance.create! valid_attributes
+        entrance = Entrance.create!(name: "C1")
         patch api_v1_entrance_url(entrance), params: { entrance: new_attributes }
         entrance.reload
         expect(entrance.name).to eq("A1")
@@ -85,7 +84,7 @@ end.to change(
 
     context "with invalid parameters" do
       it "renders a response with 422 status" do
-        entrance = Entrance.create! valid_attributes
+        entrance = Entrance.create!(name: "A1")
         patch api_v1_entrance_url(entrance), params: { entrance: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -94,7 +93,7 @@ end.to change(
 
   describe "DELETE /destroy" do
     it "destroys the requested api_v1_entrance" do
-      entrance = Entrance.create! valid_attributes
+      entrance = Entrance.create!(name: "D")
       expect { delete api_v1_entrance_url(entrance) }.to change(Entrance, :count).by(-1)
     end
   end

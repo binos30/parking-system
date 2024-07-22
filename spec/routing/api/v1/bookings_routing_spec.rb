@@ -17,27 +17,15 @@ RSpec.describe Api::V1::BookingsController do
     end
 
     it "routes to #update via PUT" do
-      expect(put: "/api/v1/bookings/1").to route_to(
-        "api/v1/bookings#update",
-        id: "1",
-        format: :json
-      )
+      expect(put: "/api/v1/bookings/1").to route_to("api/v1/bookings#update", id: "1", format: :json)
     end
 
     it "routes to #update via PATCH" do
-      expect(patch: "/api/v1/bookings/1").to route_to(
-        "api/v1/bookings#update",
-        id: "1",
-        format: :json
-      )
+      expect(patch: "/api/v1/bookings/1").to route_to("api/v1/bookings#update", id: "1", format: :json)
     end
 
     it "routes to #destroy" do
-      expect(delete: "/api/v1/bookings/1").to route_to(
-        "api/v1/bookings#destroy",
-        id: "1",
-        format: :json
-      )
+      expect(delete: "/api/v1/bookings/1").to route_to("api/v1/bookings#destroy", id: "1", format: :json)
     end
   end
 end

@@ -15,11 +15,11 @@ require "rails_helper"
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/api/v1/bookings" do
-  before do
-    Entrance.create!(name: "A")
-    Entrance.create!(name: "B")
-    Entrance.create!(name: "C")
-  end
+  # before do
+  #   Entrance.create!(name: "A")
+  #   Entrance.create!(name: "B")
+  #   Entrance.create!(name: "C")
+  # end
 
   # This should return the minimal set of attributes required to create a valid
   # Booking. As you add validations to Booking, be sure to
@@ -62,7 +62,6 @@ RSpec.describe "/api/v1/bookings" do
       get api_v1_booking_url(booking)
       expect(response).to have_http_status(:success)
       json = response.parsed_body
-      puts json["vehicle_type"]
       expect(json["vehicle_type"]).to eq("small")
       expect(json["plate_number"]).to eq("ABC123")
     end
