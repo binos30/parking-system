@@ -6,8 +6,7 @@ class ParkingLot < ApplicationRecord
   accepts_nested_attributes_for :parking_slots,
                                 reject_if:
                                   proc { |parking_slot|
-                                    parking_slot["slot_type"].blank? &&
-                                      parking_slot["distances"].blank?
+                                    parking_slot["slot_type"].blank? && parking_slot["distances"].blank?
                                   },
                                 allow_destroy: true
 

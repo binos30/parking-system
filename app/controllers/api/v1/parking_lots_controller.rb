@@ -21,9 +21,7 @@ module Api
         end
 
         respond_to do |format|
-          format.json do
-            render :show, status: :created, location: api_v1_parking_lot_url(@parking_lot)
-          end
+          format.json { render :show, status: :created, location: api_v1_parking_lot_url(@parking_lot) }
         end
       end
 

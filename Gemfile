@@ -61,6 +61,16 @@ group :development, :test do
 
   # Testing Framework
   gem "rspec-rails"
+
+  ## Code Formatting & Linting
+  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem "rubocop-rails-omakase", require: false
+  # Code style checking for RSpec files [https://github.com/rubocop/rubocop-rspec]
+  gem "rubocop-rspec", require: false
+  # Code style checking for Rails-related RSpec files [https://github.com/rubocop/rubocop-rspec_rails]
+  gem "rubocop-rspec_rails", require: false
+  # Interact with the Ruby syntax tree [https://github.com/ruby-syntax-tree/syntax_tree]
+  gem "syntax_tree"
 end
 
 group :development do
@@ -73,15 +83,9 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  # Code Formatting & Linting
-  gem "prettier_print"
-  gem "rubocop-rails-omakase", require: false
-  gem "rubocop-rspec", require: false
-  gem "rubocop-rspec_rails", require: false
+  ## Code Formatting & Linting
+  # Configurable tool for analyzing Slim templates [https://github.com/sds/slim-lint]
   gem "slim_lint"
-  gem "syntax_tree"
-  gem "syntax_tree-haml"
-  gem "syntax_tree-rbs"
 
   # Optimize queries
   gem "bullet"

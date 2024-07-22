@@ -34,9 +34,7 @@ module Api
       def update
         Booking.transaction { @booking.update!(booking_params) }
 
-        respond_to do |format|
-          format.json { render :show, status: :ok, location: api_v1_booking_url(@booking) }
-        end
+        respond_to { |format| format.json { render :show, status: :ok, location: api_v1_booking_url(@booking) } }
       end
 
       # DELETE /api/v1/bookings/1 or /api/v1/bookings/1.json
@@ -48,25 +46,17 @@ module Api
 
       def park_vehicle
         Booking.transaction do
-          parking_slot =
-            FindClosestParkingSlot.new(
-              @booking.vehicle_type,
-              park_vehicle_params[:entrance_id]
-            ).call
+          parking_slot = FindClosestParkingSlot.new(@booking.vehicle_type, park_vehicle_params[:entrance_id]).call
           @booking.park_vehicle!(parking_slot, park_vehicle_params.except(:entrance_id))
         end
 
-        respond_to do |format|
-          format.json { render :show, status: :ok, location: api_v1_booking_url(@booking) }
-        end
+        respond_to { |format| format.json { render :show, status: :ok, location: api_v1_booking_url(@booking) } }
       end
 
       def unpark_vehicle
         Booking.transaction { @booking.unpark_vehicle!(unpark_vehicle_params) }
 
-        respond_to do |format|
-          format.json { render :show, status: :ok, location: api_v1_booking_url(@booking) }
-        end
+        respond_to { |format| format.json { render :show, status: :ok, location: api_v1_booking_url(@booking) } }
       end
 
       private
