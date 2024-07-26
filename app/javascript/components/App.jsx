@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Routes from "../routes";
 
-export default () => {
+const App = () => {
   return (
     <>
       <Sidebar />
@@ -14,3 +14,5 @@ export default () => {
     </>
   );
 };
+
+export default App;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Navbar } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 const AppNavbar = () => {
   const handleClick = (e) => {

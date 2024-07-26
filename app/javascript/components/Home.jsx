@@ -1,7 +1,7 @@
 import React from "react";
 import { useDocumentTitle } from "../core/hooks";
 
-export default () => {
+const Home = () => {
   useDocumentTitle("ParkingSystem");
 
   return (
@@ -46,3 +46,5 @@ export default () => {
     </div>
   );
 };
+
+export default Home;
