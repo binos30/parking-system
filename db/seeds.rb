@@ -1,5 +1,8 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
+# frozen_string_literal: true
+
+# This file should ensure the existence of records required to run the application in every environment
+# (production, development, test).
+# The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 # Example:
@@ -9,9 +12,7 @@
 #   end
 
 Entrance.delete_all
-ActiveRecord::Base.connection.execute(
-  "ALTER SEQUENCE entrances_id_seq RESTART WITH 1;"
-)
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE entrances_id_seq RESTART WITH 1;")
 Entrance.create(name: "A")
 Entrance.create(name: "B")
 Entrance.create(name: "C")
