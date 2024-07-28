@@ -9,7 +9,7 @@ import {
   api_v1_entrances_path,
   api_v1_bookings_path,
   api_v1_booking_park_vehicle_path,
-  api_v1_booking_unpark_vehicle_path
+  api_v1_booking_unpark_vehicle_path,
 } from "../core/api_routes";
 import { api, ApiError } from "../core/api";
 import { currencyFormatter, formatDate } from "../core/helpers";
@@ -17,7 +17,7 @@ import { useDocumentTitle } from "../core/hooks";
 
 const Bookings = () => {
   const methods = useForm({
-    defaultValues: { date_park: "", date_unpark: "" }
+    defaultValues: { date_park: "", date_unpark: "" },
   });
   const { formState, handleSubmit, register, reset } = methods;
   const { isSubmitting } = formState;
@@ -161,11 +161,11 @@ const Bookings = () => {
     const getEntrances = async () => {
       try {
         const response = await api.get(api_v1_entrances_path(), {
-          signal: abortController.signal
+          signal: abortController.signal,
         });
         const entranceOptions = response.data.map((entrance) => ({
           label: entrance.name,
-          value: entrance.id
+          value: entrance.id,
         }));
         setEntrances(entranceOptions);
       } catch (error) {

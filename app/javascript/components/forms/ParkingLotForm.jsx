@@ -16,7 +16,7 @@ const ParkingLotForm = () => {
   const { id } = useParams();
   const methods = useForm({
     defaultValues: { name: "" },
-    resolver: yupResolver(ParkingLotSchema)
+    resolver: yupResolver(ParkingLotSchema),
   });
   const { control, getValues, handleSubmit, register, reset, formState } = methods;
   const { errors, isSubmitting } = formState;
@@ -24,7 +24,7 @@ const ParkingLotForm = () => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: fieldArrayName,
-    keyName: "key"
+    keyName: "key",
   });
   const [processing, setProcessing] = useState(true);
   const [formErrors, setFormErrors] = useState([]);
@@ -37,7 +37,7 @@ const ParkingLotForm = () => {
 
     return {
       ...data,
-      parking_slots_attributes: [...parking_slots_attributes, ...slotsForDestruction]
+      parking_slots_attributes: [...parking_slots_attributes, ...slotsForDestruction],
     };
   };
 
@@ -66,7 +66,7 @@ const ParkingLotForm = () => {
     const error = "There are errors on your form.";
     if (data?.parking_slots_attributes) {
       setFormErrors([
-        data.parking_slots_attributes.message || data.parking_slots_attributes.root?.message || error
+        data.parking_slots_attributes.message || data.parking_slots_attributes.root?.message || error,
       ]);
     } else {
       setFormErrors([error]);
@@ -79,11 +79,11 @@ const ParkingLotForm = () => {
       setProcessing(true);
       try {
         const response = await api.get(api_v1_parking_lot_path(id), {
-          signal: abortController.signal
+          signal: abortController.signal,
         });
         const values = {
           ...getValues(),
-          ...response.data
+          ...response.data,
         };
         reset(values);
       } catch (error) {

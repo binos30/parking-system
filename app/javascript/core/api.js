@@ -21,7 +21,7 @@ const token = document.querySelector('meta[name="csrf-token"]').content;
 axios.defaults.headers.common = {
   Accept: "application/json",
   "Content-Type": "application/json",
-  "X-CSRF-Token": token
+  "X-CSRF-Token": token,
 };
 axios.interceptors.response.use(
   (response) => response,
@@ -30,7 +30,7 @@ axios.interceptors.response.use(
     const { data } = response;
 
     throw new ApiError(response.statusText, data);
-  }
+  },
 );
 
 const get = async (url, config = {}) => {
@@ -53,5 +53,5 @@ export const api = {
   get,
   post,
   put,
-  destroy
+  destroy,
 };

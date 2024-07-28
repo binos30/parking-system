@@ -1,6 +1,37 @@
 {
-  "name": "app",
+  "name": "parking-system",
+  "description": "Parking allocation system.",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binos30/parking-system.git"
+  },
+  "keywords": [
+    "ruby",
+    "rails",
+    "framework",
+    "mvc",
+    "rails-application",
+    "web-framework",
+    "mvc-framework",
+    "react-rails",
+    "ruby-on-rails",
+    "rails-react",
+    "parking-management",
+    "rails-crud",
+    "parking-system",
+    "rails-react-app"
+  ],
+  "author": "Venus Lumanglas (https://binos30.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/binos30/parking-system/issues"
+  },
+  "engines": {
+    "yarn": "^4.3.1",
+    "node": "^20.15.1"
+  },
+  "homepage": "https://github.com/binos30/parking-system",
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@hotwired/stimulus": "^3.2.2",
@@ -13,7 +44,7 @@
     "dayjs": "^1.11.12",
     "esbuild": "^0.23.0",
     "nodemon": "^3.1.4",
-    "postcss": "^8.4.39",
+    "postcss": "^8.4.40",
     "postcss-cli": "^11.0.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
@@ -24,12 +55,12 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
-    "eslint": "9.x",
+    "@eslint/js": "^9.8.0",
+    "eslint": "^9.8.0",
     "eslint-formatter-gha": "^1.5.0",
     "eslint-plugin-react": "^7.35.0",
     "globals": "^15.8.0",
-    "husky": "^9.1.1",
+    "husky": "^9.1.3",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.3"
   },

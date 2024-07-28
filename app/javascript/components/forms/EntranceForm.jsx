@@ -15,7 +15,7 @@ const EntranceForm = () => {
   const { id } = useParams();
   const methods = useForm({
     defaultValues: { name: "" },
-    resolver: yupResolver(EntranceSchema)
+    resolver: yupResolver(EntranceSchema),
   });
   const { getValues, handleSubmit, register, reset, formState } = methods;
   const { errors, isSubmitting } = formState;
@@ -52,11 +52,11 @@ const EntranceForm = () => {
       setProcessing(true);
       try {
         const response = await api.get(api_v1_entrance_path(id), {
-          signal: abortController.signal
+          signal: abortController.signal,
         });
         const values = {
           ...getValues(),
-          ...response.data
+          ...response.data,
         };
         reset(values);
       } catch (error) {

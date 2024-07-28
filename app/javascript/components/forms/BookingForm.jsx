@@ -14,7 +14,7 @@ const BookingForm = () => {
   const navigate = useNavigate();
   const methods = useForm({
     defaultValues: { vehicle_type: "", plate_number: "" },
-    resolver: yupResolver(BookingSchema)
+    resolver: yupResolver(BookingSchema),
   });
   const { handleSubmit, register, formState } = methods;
   const { errors, isSubmitting } = formState;

@@ -10,6 +10,6 @@ document.addEventListener("turbo:load", () => {
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 });

@@ -4,8 +4,19 @@ import Errors from "./Errors";
 import Loader from "./Loader";
 import { api_v1_dashboard_path } from "../core/api_routes";
 import { api, ApiError } from "../core/api";
-import { DEFAULT_SLOTS_COUNT } from "../core/constants";
 import { useDocumentTitle } from "../core/hooks";
+
+const DEFAULT_SLOTS_COUNT = {
+  small_vacant_slots_count: 0,
+  medium_vacant_slots_count: 0,
+  large_vacant_slots_count: 0,
+  small_reserved_slots_count: 0,
+  medium_reserved_slots_count: 0,
+  large_reserved_slots_count: 0,
+  small_occupied_slots_count: 0,
+  medium_occupied_slots_count: 0,
+  large_occupied_slots_count: 0,
+};
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);

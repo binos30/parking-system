@@ -7,7 +7,7 @@ export const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "PHP",
   maximumFractionDigits: 2,
-  minimumFractionDigits: 2
+  minimumFractionDigits: 2,
 });
 
 export const formatDate = (date, format = "MMM DD, YYYY h:mm A") => {
