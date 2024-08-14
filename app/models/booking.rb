@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Booking < ApplicationRecord
-  enum vehicle_type: { small: 0, medium: 1, large: 2 }
+  enum :vehicle_type, { small: 0, medium: 1, large: 2 }
 
   belongs_to :parking_slot
 
