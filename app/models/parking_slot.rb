@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ParkingSlot < ApplicationRecord
-  enum slot_type: { small: 0, medium: 1, large: 2 }
-  enum status: { vacant: 0, reserved: 1, occupied: 2 }, _default: :vacant
+  enum :slot_type, { small: 0, medium: 1, large: 2 }
+  enum :status, { vacant: 0, reserved: 1, occupied: 2 }, default: :vacant
 
   belongs_to :parking_lot
 
