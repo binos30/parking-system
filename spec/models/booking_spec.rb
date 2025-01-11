@@ -2,28 +2,63 @@
 
 require "rails_helper"
 
-RSpec.describe Booking do
-  before do
-    Entrance.create!(name: "A")
-    Entrance.create!(name: "B")
-    Entrance.create!(name: "C")
+RSpec.describe Booking, type: :model do
+  describe "db_columns" do
+    it { should have_db_column(:parking_slot_id).of_type(:integer).with_options(null: false) }
+    it { should have_db_column(:vehicle_type).of_type(:integer).with_options(null: false) }
+    it { should have_db_column(:plate_number).of_type(:string).with_options(null: false) }
+    it { should have_db_column(:date_park).of_type(:datetime) }
+    it { should have_db_column(:date_unpark).of_type(:datetime) }
+    it do
+      should have_db_column(:fee).of_type(:decimal).with_options(null: false, default: 0.0, precision: 8, scale: 2)
+    end
   end
 
-  let!(:parking_lot) do
-    parking_lot = ParkingLot.new(name: "PL1")
-    parking_lot.parking_slots.build(slot_type: 0, distances: "1,2,3")
-    parking_lot.save!
-    parking_lot
-  end
-  let!(:parking_slot) { parking_lot.parking_slots.first }
-
-  it "does not save without parking_slot" do
-    booking = described_class.new(vehicle_type: VehicleType::TYPES[:small], plate_number: "ABC123")
-    expect(booking.save).to be false
+  describe "db_indexes" do
+    it { should have_db_index(:parking_slot_id) }
+    it { should have_db_index(:plate_number) }
+    it { should have_db_index(:vehicle_type) }
   end
 
-  it "saves" do
-    booking = described_class.new(parking_slot:, vehicle_type: VehicleType::TYPES[:small], plate_number: "ABC123")
-    expect(booking.save).to be true
+  describe "associations" do
+    describe "belongs_to" do
+      it { should belong_to(:parking_slot).inverse_of(:bookings) }
+    end
+  end
+
+  describe "validations" do
+    describe "presence" do
+      it { should validate_presence_of(:plate_number) }
+    end
+
+    describe "numericality" do
+      it { should validate_numericality_of(:fee).is_greater_than_or_equal_to(0) }
+    end
+
+    describe "inclusion" do
+      it { should validate_inclusion_of(:vehicle_type).in_array(Booking.vehicle_types.keys) }
+    end
+
+    describe "length" do
+      it { should validate_length_of(:plate_number).is_at_least(2).is_at_most(9) }
+    end
+
+    describe "comparison" do
+      subject { build :booking }
+
+      context "when date_park is present" do
+        before { subject.date_park = Date.current - 3.hours }
+
+        context "when date_unpark is present" do
+          before { subject.date_unpark = Date.current }
+
+          it do
+            should validate_comparison_of(:date_unpark).is_greater_than(:date_park).with_message(
+                     "must be after date park"
+                   )
+          end
+        end
+      end
+    end
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ParkingLot < ApplicationRecord
-  has_many :parking_slots, dependent: :destroy
+  has_many :parking_slots, inverse_of: :parking_lot, dependent: :destroy
 
   accepts_nested_attributes_for :parking_slots,
                                 reject_if:
@@ -16,8 +16,7 @@ class ParkingLot < ApplicationRecord
               case_sensitive: false
             },
             length: {
-              minimum: 2,
-              maximum: 15
+              in: 2..15
             },
             format: %r{\A[a-zA-Z0-9\s\-/&]*\z}
 

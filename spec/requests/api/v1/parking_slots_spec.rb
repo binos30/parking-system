@@ -14,24 +14,20 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/api/v1/parking_slots" do
-  before do
-    Entrance.create!(name: "A")
-    Entrance.create!(name: "B")
-    Entrance.create!(name: "C")
-  end
-
-  let(:valid_attributes) { { slot_type: 0, distances: "1,2,3" } }
+RSpec.describe "/api/v1/parking_slots", type: :request do
+  let!(:parking_lot) { create :parking_lot }
 
   describe "GET /index" do
-    it "renders a successful response" do
-      parking_lot = ParkingLot.new(name: "PL1")
-      parking_lot.parking_slots.build(valid_attributes)
-      parking_lot.save!
+    before do
+      ParkingSlot.destroy_all
+      create_pair(:parking_slot, parking_lot:)
       get api_v1_parking_slots_url
+    end
+
+    it "renders a successful response" do
       expect(response).to have_http_status(:success)
       parking_slots = response.parsed_body
-      expect(parking_slots.size).to eq(1)
+      expect(parking_slots.size).to eq(2)
     end
   end
 end

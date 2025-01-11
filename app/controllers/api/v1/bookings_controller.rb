@@ -7,7 +7,7 @@ module Api
 
       # GET /api/v1/bookings or /api/v1/bookings.json
       def index
-        @bookings = Booking.includes([:parking_slot]).order(:created_at)
+        @bookings = Booking.order(:created_at)
       end
 
       # GET /api/v1/bookings/1 or /api/v1/bookings/1.json

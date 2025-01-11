@@ -14,13 +14,7 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/api/v1/parking_lots" do
-  before do
-    Entrance.create!(name: "A")
-    Entrance.create!(name: "B")
-    Entrance.create!(name: "C")
-  end
-
+RSpec.describe "/api/v1/parking_lots", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # ParkingLot. As you add validations to ParkingLot, be sure to
   # adjust the attributes here as well.
@@ -31,21 +25,22 @@ RSpec.describe "/api/v1/parking_lots" do
   let(:valid_slots_attributes) { [{ slot_type: "small", distances: "1,2,3" }] }
 
   describe "GET /index" do
-    it "renders a successful response" do
-      parking_lot = ParkingLot.new(valid_attributes)
-      parking_lot.parking_slots.build(valid_slots_attributes)
-      parking_lot.save!
+    before do
+      create_pair(:parking_lot)
       get api_v1_parking_lots_url
+    end
+
+    it "renders a successful response" do
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /show" do
+    let!(:parking_lot) { create :parking_lot, name: "PL" }
+
+    before { get api_v1_parking_lot_url(parking_lot) }
+
     it "renders a successful response" do
-      parking_lot = ParkingLot.new(valid_attributes)
-      parking_lot.parking_slots.build(valid_slots_attributes)
-      parking_lot.save!
-      get api_v1_parking_lot_url(parking_lot)
       expect(response).to have_http_status(:success)
       json = response.parsed_body
       expect(json["name"]).to eq("PL")
@@ -53,6 +48,8 @@ RSpec.describe "/api/v1/parking_lots" do
   end
 
   describe "POST /create" do
+    before { create_list(:entrance, 3) }
+
     context "with valid parameters" do
       it "creates a new ParkingLot" do
         expect do
@@ -94,24 +91,19 @@ RSpec.describe "/api/v1/parking_lots" do
   end
 
   describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) { { name: "PL1" } }
+    let!(:parking_lot) { create :parking_lot }
+    let(:new_attributes) { { name: "PL2" } }
 
+    context "with valid parameters" do
       it "updates the requested api_v1_parking_lot" do
-        parking_lot = ParkingLot.new(valid_attributes)
-        parking_lot.parking_slots.build(valid_slots_attributes)
-        parking_lot.save!
-        patch api_v1_parking_lot_url(parking_lot), params: { parking_lot: new_attributes }
-        parking_lot.reload
-        expect(parking_lot.name).to eq("PL1")
+        expect { patch api_v1_parking_lot_url(parking_lot), params: { parking_lot: new_attributes } }.to(
+          change { parking_lot.reload.name }.to("PL2")
+        )
       end
     end
 
     context "with invalid parameters" do
       it "renders a response with 422 status" do
-        parking_lot = ParkingLot.new(valid_attributes)
-        parking_lot.parking_slots.build(valid_slots_attributes)
-        parking_lot.save!
         patch api_v1_parking_lot_url(parking_lot), params: { parking_lot: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -119,10 +111,9 @@ RSpec.describe "/api/v1/parking_lots" do
   end
 
   describe "DELETE /destroy" do
+    let!(:parking_lot) { create :parking_lot }
+
     it "destroys the requested api_v1_parking_lot" do
-      parking_lot = ParkingLot.new(valid_attributes)
-      parking_lot.parking_slots.build(valid_slots_attributes)
-      parking_lot.save!
       expect { delete api_v1_parking_lot_url(parking_lot) }.to change(ParkingLot, :count).by(-1)
     end
   end

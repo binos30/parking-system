@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Api::V1::EntrancesController do
+RSpec.describe Api::V1::EntrancesController, type: :routing do
   describe "routing" do
     it "routes to #index" do
       expect(get: "/api/v1/entrances").to route_to("api/v1/entrances#index", format: :json)

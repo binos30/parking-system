@@ -3,17 +3,26 @@
 class Booking < ApplicationRecord
   enum :vehicle_type, { small: 0, medium: 1, large: 2 }
 
-  belongs_to :parking_slot
+  belongs_to :parking_slot, inverse_of: :bookings
 
-  validates :vehicle_type, presence: true, inclusion: { in: vehicle_types.keys }
-  validates :plate_number, presence: true, length: { minimum: 2, maximum: 9 }
+  validates :vehicle_type, inclusion: { in: vehicle_types.keys }
+  validates :plate_number, presence: true, length: { in: 2..9 }
+  validates :fee, numericality: { greater_than_or_equal_to: 0 }
   validates_comparison_of :date_unpark,
                           greater_than: :date_park,
                           message: "must be after date park",
                           if: -> { date_unpark.present? }
 
   def plate_number=(value)
-    self[:plate_number] = value.upcase
+    self[:plate_number] = value&.upcase
+  end
+
+  # Overwrite the setter to rely on validations instead of [ArgumentError]
+  # https://github.com/rails/rails/issues/13971#issuecomment-721821257
+  def vehicle_type=(value)
+    self[:vehicle_type] = value
+  rescue ArgumentError
+    self[:vehicle_type] = nil
   end
 
   def park_vehicle!(slot, params)
