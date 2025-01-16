@@ -33,7 +33,7 @@ Go to [http://localhost:3000](http://localhost:3000)
 
 ## GitHub Actions, Linting and Security Auditing
 
-GitHub actions are setup to lint and test the application on pushes to **main** and **feature** branches.
+GitHub actions are setup to lint and test the application on **pull_request** and **push** to **main** branch.
 
 You can also run these actions locally before pushing to see if your run is likely to fail. See the following gems / commands for more info.
 
@@ -128,7 +128,7 @@ run the following command from your application's root directory:
 open coverage/index.html
 ```
 
-in a debian/ubuntu Terminal,
+in a Debian/Ubuntu Terminal,
 
 ```bash
 xdg-open coverage/index.html
