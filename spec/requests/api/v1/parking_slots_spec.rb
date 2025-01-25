@@ -15,19 +15,16 @@ require "rails_helper"
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/api/v1/parking_slots", type: :request do
-  let!(:parking_lot) { create :parking_lot }
-
   describe "GET /index" do
     before do
-      ParkingSlot.destroy_all
-      create_pair(:parking_slot, parking_lot:)
+      create(:parking_lot, slots_count: 3)
       get api_v1_parking_slots_url
     end
 
     it "renders a successful response" do
       expect(response).to have_http_status(:success)
       parking_slots = response.parsed_body
-      expect(parking_slots.size).to eq(2)
+      expect(parking_slots.size).to eq(3)
     end
   end
 end

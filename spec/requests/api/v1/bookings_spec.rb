@@ -15,11 +15,6 @@ require "rails_helper"
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/api/v1/bookings", type: :request do
-  # This should return the minimal set of attributes required to create a valid
-  # Booking. As you add validations to Booking, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) { { vehicle_type: VehicleType::TYPES[:small], plate_number: "ABC123" } }
-
   describe "GET /index" do
     before do
       create(:booking)
@@ -32,7 +27,7 @@ RSpec.describe "/api/v1/bookings", type: :request do
   end
 
   describe "GET /show" do
-    let!(:booking) { create(:booking, **valid_attributes) }
+    let!(:booking) { create(:booking, vehicle_type: :small) }
 
     before { get api_v1_booking_url(booking) }
 
