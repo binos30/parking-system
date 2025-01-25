@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 require "simplecov"
-SimpleCov.start { add_filter("spec/support") }
+SimpleCov.start "rails" do
+  add_group "Services", "app/services"
+  add_group "Enums", "app/enums"
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require "spec_helper"
