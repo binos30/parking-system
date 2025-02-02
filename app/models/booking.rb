@@ -41,7 +41,7 @@ class Booking < ApplicationRecord
     raise "Vehicle already unparked." if date_unpark.present?
 
     unpark_date = Time.zone.parse(params[:date_unpark])
-    self.fee = CalculateFee.new(unpark_date, date_park, parking_slot.slot_type).call
+    self.fee = CalculateFee.call(unpark_date, date_park, parking_slot.slot_type)
     update!(params)
 
     raise "Can't unpark, slot not occupied." unless parking_slot.occupied?

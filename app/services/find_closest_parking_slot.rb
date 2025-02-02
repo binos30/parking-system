@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class FindClosestParkingSlot
+class FindClosestParkingSlot < ApplicationService
   def initialize(vehicle_type, entrance_id)
     @vehicle_type = vehicle_type
     @entrance_id = entrance_id
   end
 
-  def call # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+  def call!
     entrance_index = Entrance.order(:created_at).ids.index(@entrance_id.to_i)
     raise "Entrance not found." if entrance_index.nil?
 

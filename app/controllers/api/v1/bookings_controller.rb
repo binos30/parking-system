@@ -17,7 +17,7 @@ module Api
       # POST /api/v1/bookings or /api/v1/bookings.json
       def create # rubocop:disable Metrics/AbcSize
         Booking.transaction do
-          parking_slot = FindAvailableParkingSlot.new(booking_params[:vehicle_type]).call
+          parking_slot = FindAvailableParkingSlot.call(booking_params[:vehicle_type])
           raise "Sorry, there are no available slots" if parking_slot.nil?
 
           @booking = Booking.new(booking_params.merge(parking_slot_id: parking_slot.id))
@@ -46,7 +46,7 @@ module Api
 
       def park_vehicle
         Booking.transaction do
-          parking_slot = FindClosestParkingSlot.new(@booking.vehicle_type, park_vehicle_params[:entrance_id]).call
+          parking_slot = FindClosestParkingSlot.call!(@booking.vehicle_type, park_vehicle_params[:entrance_id])
           @booking.park_vehicle!(parking_slot, park_vehicle_params.except(:entrance_id))
         end
 

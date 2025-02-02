@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FindAvailableParkingSlot
+class FindAvailableParkingSlot < ApplicationService
   def initialize(vehicle_type)
     @vehicle_type = vehicle_type
   end
