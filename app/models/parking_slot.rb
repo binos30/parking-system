@@ -1,33 +1,16 @@
 # frozen_string_literal: true
 
 class ParkingSlot < ApplicationRecord
-  enum :slot_type, { small: 0, medium: 1, large: 2 }
-  enum :status, { vacant: 0, reserved: 1, occupied: 2 }, default: :vacant
+  enum :slot_type, { small: 0, medium: 1, large: 2 }, validate: true
+  enum :status, { vacant: 0, reserved: 1, occupied: 2 }, validate: true, default: :vacant
 
   belongs_to :parking_lot, inverse_of: :parking_slots
 
   has_many :bookings, inverse_of: :parking_slot, dependent: :restrict_with_exception
 
-  validates :slot_type, inclusion: { in: slot_types.keys }
-  validates :status, inclusion: { in: statuses.keys }
-
   validate :validate_distances
 
   before_validation :set_distances
-
-  # Overwrite the setter to rely on validations instead of [ArgumentError]
-  # https://github.com/rails/rails/issues/13971#issuecomment-721821257
-  def slot_type=(value)
-    self[:slot_type] = value
-  rescue ArgumentError
-    self[:slot_type] = nil
-  end
-
-  def status=(value)
-    self[:status] = value
-  rescue ArgumentError
-    self[:status] = nil
-  end
 
   def code
     id.to_s.rjust(3, "0")
