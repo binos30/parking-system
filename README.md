@@ -35,7 +35,7 @@ Go to [http://localhost:3000](http://localhost:3000)
 
 ## GitHub Actions, Linting and Security Auditing
 
-GitHub actions are setup to lint and test the application on **pull_request** and **push** to **main** branch.
+GitHub actions are setup to lint and test the application.
 
 You can also run these actions locally before pushing to see if your run is likely to fail. See the following gems / commands for more info.
 
