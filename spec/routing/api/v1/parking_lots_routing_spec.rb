@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Api::V1::ParkingLotsController, type: :routing do
+RSpec.describe Api::V1::ParkingLotsController do
   describe "routing" do
     it "routes to #index" do
       expect(get: "/api/v1/parking_lots").to route_to("api/v1/parking_lots#index", format: :json)

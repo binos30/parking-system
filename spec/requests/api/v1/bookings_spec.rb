@@ -14,7 +14,7 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/api/v1/bookings", type: :request do
+RSpec.describe "/api/v1/bookings" do
   describe "GET /index" do
     before do
       create(:booking)

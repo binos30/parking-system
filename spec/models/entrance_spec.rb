@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Entrance, type: :model do
+RSpec.describe Entrance do
   describe "db_columns" do
     it { should have_db_column(:name).of_type(:string).with_options(null: false) }
   end
@@ -21,13 +21,13 @@ RSpec.describe Entrance, type: :model do
     end
 
     describe "uniqueness" do
-      subject { build :entrance }
+      subject { build(:entrance) }
 
       it { should validate_uniqueness_of(:name).case_insensitive }
     end
 
     describe "format" do
-      subject { build :entrance }
+      subject { build(:entrance) }
 
       describe "name" do
         it "accepts a valid value" do
@@ -37,7 +37,7 @@ RSpec.describe Entrance, type: :model do
 
         it "does not accept an invalid format" do
           subject.name = "Entrance<1"
-          expect(subject).to be_invalid
+          expect(subject).not_to be_valid
         end
       end
     end

@@ -2,15 +2,21 @@
 
 require "rails_helper"
 
-RSpec.describe Booking, type: :model do
+RSpec.describe Booking do
   describe "db_columns" do
     it { should have_db_column(:parking_slot_id).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:vehicle_type).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:plate_number).of_type(:string).with_options(null: false) }
     it { should have_db_column(:date_park).of_type(:datetime) }
     it { should have_db_column(:date_unpark).of_type(:datetime) }
+
     it do
-      should have_db_column(:fee).of_type(:decimal).with_options(null: false, default: 0.0, precision: 8, scale: 2)
+      expect(subject).to have_db_column(:fee).of_type(:decimal).with_options(
+        null: false,
+        default: 0.0,
+        precision: 8,
+        scale: 2
+      )
     end
   end
 
@@ -36,7 +42,7 @@ RSpec.describe Booking, type: :model do
     end
 
     describe "inclusion" do
-      it { should validate_inclusion_of(:vehicle_type).in_array(Booking.vehicle_types.keys) }
+      it { should validate_inclusion_of(:vehicle_type).in_array(described_class.vehicle_types.keys) }
     end
 
     describe "length" do
@@ -44,7 +50,7 @@ RSpec.describe Booking, type: :model do
     end
 
     describe "comparison" do
-      subject { build :booking }
+      subject { build(:booking) }
 
       context "when date_park is present" do
         before { subject.date_park = Date.current - 3.hours }
@@ -53,9 +59,9 @@ RSpec.describe Booking, type: :model do
           before { subject.date_unpark = Date.current }
 
           it do
-            should validate_comparison_of(:date_unpark).is_greater_than(:date_park).with_message(
-                     "must be after date park"
-                   )
+            expect(subject).to validate_comparison_of(:date_unpark).is_greater_than(:date_park).with_message(
+              "must be after date park"
+            )
           end
         end
       end

@@ -14,7 +14,7 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/api/v1/parking_lots", type: :request do
+RSpec.describe "/api/v1/parking_lots" do
   # This should return the minimal set of attributes required to create a valid
   # ParkingLot. As you add validations to ParkingLot, be sure to
   # adjust the attributes here as well.
@@ -36,7 +36,7 @@ RSpec.describe "/api/v1/parking_lots", type: :request do
   end
 
   describe "GET /show" do
-    let!(:parking_lot) { create :parking_lot, name: "PL" }
+    let!(:parking_lot) { create(:parking_lot, name: "PL") }
 
     before { get api_v1_parking_lot_url(parking_lot) }
 
@@ -91,7 +91,7 @@ RSpec.describe "/api/v1/parking_lots", type: :request do
   end
 
   describe "PATCH /update" do
-    let!(:parking_lot) { create :parking_lot }
+    let!(:parking_lot) { create(:parking_lot) }
     let(:new_attributes) { { name: "PL2" } }
 
     context "with valid parameters" do
@@ -111,7 +111,7 @@ RSpec.describe "/api/v1/parking_lots", type: :request do
   end
 
   describe "DELETE /destroy" do
-    let!(:parking_lot) { create :parking_lot }
+    let!(:parking_lot) { create(:parking_lot) }
 
     it "destroys the requested api_v1_parking_lot" do
       expect { delete api_v1_parking_lot_url(parking_lot) }.to change(ParkingLot, :count).by(-1)

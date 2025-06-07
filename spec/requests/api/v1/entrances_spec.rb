@@ -14,7 +14,7 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/api/v1/entrances", type: :request do
+RSpec.describe "/api/v1/entrances" do
   # This should return the minimal set of attributes required to create a valid
   # Entrance. As you add validations to Entrance, be sure to
   # adjust the attributes here as well.
@@ -34,7 +34,7 @@ RSpec.describe "/api/v1/entrances", type: :request do
   end
 
   describe "GET /show" do
-    let!(:entrance) { create :entrance, name: "Entrance A" }
+    let!(:entrance) { create(:entrance, name: "Entrance A") }
 
     before { get api_v1_entrance_url(entrance) }
 
@@ -76,7 +76,7 @@ RSpec.describe "/api/v1/entrances", type: :request do
   end
 
   describe "PATCH /update" do
-    let!(:entrance) { create :entrance }
+    let!(:entrance) { create(:entrance) }
     let(:new_attributes) { { name: "Entrance2" } }
 
     context "with valid parameters" do
@@ -96,7 +96,7 @@ RSpec.describe "/api/v1/entrances", type: :request do
   end
 
   describe "DELETE /destroy" do
-    let!(:entrance) { create :entrance }
+    let!(:entrance) { create(:entrance) }
 
     it "destroys the requested api_v1_entrance" do
       expect { delete api_v1_entrance_url(entrance) }.to change(Entrance, :count).by(-1)

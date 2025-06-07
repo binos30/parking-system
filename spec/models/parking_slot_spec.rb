@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ParkingSlot, type: :model do
+RSpec.describe ParkingSlot do
   describe "db_columns" do
     it { should have_db_column(:slot_type).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:distances).of_type(:string).with_options(null: false) }
@@ -19,7 +19,7 @@ RSpec.describe ParkingSlot, type: :model do
 
   describe "associations" do
     describe "belongs_to" do
-      subject { build :parking_slot }
+      subject { build(:parking_slot) }
 
       it { should belong_to(:parking_lot).inverse_of(:parking_slots) }
     end
@@ -30,11 +30,11 @@ RSpec.describe ParkingSlot, type: :model do
   end
 
   describe "validations" do
-    subject { build :parking_slot }
+    subject { build(:parking_slot) }
 
     describe "inclusion" do
-      it { should validate_inclusion_of(:slot_type).in_array(ParkingSlot.slot_types.keys) }
-      it { should validate_inclusion_of(:status).in_array(ParkingSlot.statuses.keys) }
+      it { should validate_inclusion_of(:slot_type).in_array(described_class.slot_types.keys) }
+      it { should validate_inclusion_of(:status).in_array(described_class.statuses.keys) }
     end
 
     describe "validate_distances" do

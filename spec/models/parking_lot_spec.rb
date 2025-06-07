@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ParkingLot, type: :model do
+RSpec.describe ParkingLot do
   describe "db_columns" do
     it { should have_db_column(:name).of_type(:string).with_options(null: false) }
   end
@@ -27,13 +27,13 @@ RSpec.describe ParkingLot, type: :model do
     end
 
     describe "uniqueness" do
-      subject { build :parking_lot }
+      subject { build(:parking_lot) }
 
       it { should validate_uniqueness_of(:name).case_insensitive }
     end
 
     describe "format" do
-      subject { build :parking_lot }
+      subject { build(:parking_lot) }
 
       before { create_pair(:entrance) }
 
@@ -45,13 +45,13 @@ RSpec.describe ParkingLot, type: :model do
 
         it "does not accept an invalid format" do
           subject.name = "ParkingLot<1"
-          expect(subject).to be_invalid
+          expect(subject).not_to be_valid
         end
       end
     end
 
     describe "validate_has_one_slot" do
-      subject { build :parking_lot }
+      subject { build(:parking_lot) }
 
       it "is valid" do
         expect(subject.valid?).to be true
