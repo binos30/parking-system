@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RUBOCOP_CACHE_ROOT: tmp/rubocop
-    needs: scan_ruby
+    needs: scan_ruby # Ensures lint runs only if scan_ruby passes
     permissions:
       actions: write
     steps:
@@ -128,7 +128,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: [scan_ruby, lint]
+    needs: lint # Ensures test runs only if lint passes
     services:
       postgres:
         image: postgres
