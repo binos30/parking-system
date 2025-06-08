@@ -19,6 +19,7 @@ export default [
       ".cache/",
       ".yarn/",
       "app/assets/builds/*",
+      "coverage/",
       "db/",
       "docs/",
       "lib/",
