@@ -25,6 +25,14 @@ Install dependencies and setup database
 bin/setup
 ```
 
+Re-enable git hooks
+
+```bash
+git config --unset core.hooksPath
+```
+
+Run `lefthook install` to sync the git hooks
+
 Start local web server
 
 ```bash
