@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/binos30/parking-system",
   "dependencies": {
-    "@hookform/resolvers": "^5.0.1",
+    "@hookform/resolvers": "^5.1.1",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.16",
     "@popperjs/core": "^2.11.8",
