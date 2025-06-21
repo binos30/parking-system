@@ -411,7 +411,6 @@ DEPENDENCIES
   rspec-rails
   rubocop-capybara
   rubocop-factory_bot
-  rubocop-rails
   rubocop-rails-omakase
   rubocop-rspec
   rubocop-rspec_rails
