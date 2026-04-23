@@ -17,6 +17,6 @@ class ApiController < ApplicationController
     errors = invalid.record.errors.full_messages
     logger.error errors
 
-    respond_to { |format| format.json { render json: errors, status: :unprocessable_entity } }
+    respond_to { |format| format.json { render json: errors, status: :unprocessable_content } }
   end
 end
