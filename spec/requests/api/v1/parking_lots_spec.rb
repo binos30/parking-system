@@ -85,7 +85,7 @@ RSpec.describe "/api/v1/parking_lots" do
 
       it "renders a response with 422 status" do
         post api_v1_parking_lots_url, params: { parking_lot: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -105,7 +105,7 @@ RSpec.describe "/api/v1/parking_lots" do
     context "with invalid parameters" do
       it "renders a response with 422 status" do
         patch api_v1_parking_lot_url(parking_lot), params: { parking_lot: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
